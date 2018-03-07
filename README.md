@@ -1,4 +1,5 @@
-## SummIT
+## SummIT 
+![](client/public/apple-touch-icon.png) 
 
 Sum up the status from your monit instances
 
