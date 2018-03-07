@@ -1,0 +1,23 @@
+{
+  "name": "summit",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-promise-router": "^3.0.1",
+    "nocache": "^2.0.0",
+    "ramda": "^0.25.0",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
+    "xml2js-es6-promise": "^1.1.1",
+    "yml": "^1.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  }
+}

@@ -1,0 +1,17 @@
+---
+# define all monitored clusters (work / home in below example)
+clusters:
+  work:
+    # Optional. monit servers are called with this additional request options
+    req_options:
+      auth:
+        user: admin
+        pass: adminPass
+    # define each monit url against a display alias (for quick testing, can add same monit multiple times to form a bigger cluster)
+    monits:
+      apps: http://192.168.1.21:2812
+      tools: http://192.168.1.22:2812
+  home:
+    monits:
+      rpi1: http://super.home:2812
+      rpi2: http://duper.home:2812
