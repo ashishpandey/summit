@@ -12,7 +12,7 @@ If you want to run in dev mode, follow the below steps
 * install yarn (if using nvm, install without nodejs option)
 * install nodemon globally (yarn global add nodemon)
 * run yarn under checkout dir as well as under client dir
-* create a config.yml in checkout directory (see config.yml.sample for inspiration)
+* create a config.yml in checkout directory (see [config.yml.sample](config.yml.sample) for inspiration)
 * use yarn to (yarn `<command>`)
   * dev
   * build
