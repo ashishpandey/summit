@@ -3,6 +3,8 @@
 
 Sum up the status from your monit instances
 
+[![Build Status](https://travis-ci.org/ashishpandey/summit.svg?branch=master)](https://travis-ci.org/ashishpandey/summit)
+
 This is not a replacement for M/monit which is a much advanced product with much more functionality. The goal here is to [KISS](https://en.wikipedia.org/wiki/KISS_principle), and just provide a overview of all of your monit instances at a glance
 
 ### Dev Usage
