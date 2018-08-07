@@ -3,6 +3,5 @@ node_js:
  - "node"
  - "8"
 env:
- - WORKDIR=.
  - WORKDIR=client
 script: cd $WORKDIR && yarn && yarn test 
