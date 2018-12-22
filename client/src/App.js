@@ -5,7 +5,6 @@ import Clusters from './clusters';
 import Cluster from './cluster';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
 import './App.css';
 
 const AppRouter = () => (
