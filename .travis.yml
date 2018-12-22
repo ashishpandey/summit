@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+ - "node"
+ - "8"
+env:
+ - WORKDIR=client
+script: cd $WORKDIR && yarn && yarn test 
