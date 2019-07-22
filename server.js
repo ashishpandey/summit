@@ -1,5 +1,6 @@
 const express = require('express');
 const nocache = require('nocache');
+const path = require('path');
 const monitApi = require('./monit/api');
 
 const app = express();
@@ -14,7 +15,7 @@ app.get('/api/hello', (req, res) => {
 app.use('/api/monit', monitApi);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use(express.static(path.resolve(__dirname, 'client/build')));
 }
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
