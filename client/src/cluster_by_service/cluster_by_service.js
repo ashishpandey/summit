@@ -312,6 +312,7 @@ export default class ClusterByService extends Component {
               <td
                 className={`instance-name clickable`}
                 onClick={() => { this.updateSelectedByStatus(statusGroup.statusByInstance(instance)); }}>
+                <i className="material-icons" onClick={() => {openPage(statusGroup.instanceUrl(instance))}}>toc</i>
                 {instance}
               </td>
               {items}
@@ -320,9 +321,10 @@ export default class ClusterByService extends Component {
         } else {
           return (
             <tr key={instance} className='instance-failed'>
-              <td className='instance-name clickable' onClick={() => {
-                openPage(statusGroup.instanceUrl(instance))
-              }}>{instance}</td>
+              <td className='instance-name clickable'>
+                <i className="material-icons" onClick={() => {openPage(statusGroup.instanceUrl(instance))}}>toc</i>
+                {instance}
+              </td>
               <td className='ignored' colSpan={statusGroup.services.length}/>
             </tr>
           )

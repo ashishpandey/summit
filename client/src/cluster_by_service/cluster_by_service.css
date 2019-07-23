@@ -9,7 +9,7 @@ table.summary-table {
 }
 
 td.selected {
-    border: #636e72 solid 5px;
+    border: #636e72 solid 4px;
 }
 
 iframe.very-small {
@@ -60,10 +60,27 @@ tr:hover .ignored {
     display: flex;
     justify-content: flex-end;
     user-select: none;
+    align-items: center;
+}
+
+.instance-name > i {
+    flex-grow: 1;
+    font-size: 16px;
+    margin-left: 3px;
+    opacity: 0;
 }
 
 tr:hover .instance-name {
     background-color: #cfd6d9;
+}
+
+tr:hover .instance-name > i {
+    opacity: 0.8;
+}
+
+.instance-name > i:hover {
+    opacity: 1;
+    color: black;
 }
 
 .status {
