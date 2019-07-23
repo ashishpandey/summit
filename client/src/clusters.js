@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import fetchData from './serverApi';
 import * as R from 'ramda';
+import SubHeader from "./common/sub_header";
+import './clusters.css';
+import Description from "./common/description";
 
 export default class Clusters extends Component {
   state = {
@@ -16,12 +19,13 @@ export default class Clusters extends Component {
 
   render() {
     const clusters = R.map(
-      clusterName => (<li><Link to={`/cluster/${clusterName}`}>{clusterName}</Link></li>),
+      clusterName => (<li key={clusterName}><Link to={`/cluster/${clusterName}`}>{clusterName}</Link></li>),
       this.state.clusters);
     return (
       <div>
-        <p>The following clusters are configured:</p>
-        <ul>{clusters}</ul>
+        <SubHeader title='clusters'/>
+        <Description>The following clusters are configured:</Description>
+        <ul className='cluster-list'>{clusters}</ul>
       </div>
     )
   }

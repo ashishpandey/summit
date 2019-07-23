@@ -33,7 +33,7 @@ body {
 
 .App-title {
   padding-left: 3px;
-  padding-top: 1px; /* to align this with the logo */
+  padding-top: 2px; /* to align this with the logo */
   font-family: 'Pacifico', cursive;
   line-height: 22px;
   font-size: 22px;
@@ -55,6 +55,11 @@ body {
 .App-subheader > .previous {
   color: #a2aeb3;
   display: inline-block;
+  text-decoration: none;
+}
+
+.App-subheader > a.previous:hover {
+  color: black;
 }
 
 .App-subheader > .current {

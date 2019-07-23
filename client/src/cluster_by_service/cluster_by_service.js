@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import * as R from 'ramda';
 import Popup from 'react-popup';
 import {openPage} from "./dom_utils";
 import {post, postAll, retrievePermission} from "./monit_utils";
 import './cluster_by_service.css';
 import './popup.css';
+import SubHeader from "../common/sub_header";
 
 const groupSummaryByInstance = (summaries) => {
 
@@ -107,41 +108,6 @@ const showPopupForOneService = (instance, service, statusGroup) => {
             Popup.close();
           }
         },
-      ]
-    }
-  });
-};
-
-const showPopupForOneServiceAtAllInstance = (service, statusGroup) => {
-
-  const serviceUrls = statusGroup.serviceUrls(service);
-
-  Popup.create({
-    title: `${service} at ${serviceUrls.length} instance(s)`,
-    content: <span>
-      start or stop service <b>{service}</b> at <b>all {serviceUrls.length} instance(s)</b><br/>
-      <i>press [esc] to close</i>
-    </span>,
-    buttons: {
-      left: [
-        {
-          text: `Stop all (${serviceUrls.length})`,
-          className: 'danger',
-          action: () => {
-            postAll(serviceUrls, {action: 'stop'});
-            Popup.close();
-          }
-        }
-      ],
-      right: [
-        {
-          text: `Start all (${serviceUrls.length})`,
-          className: 'success',
-          action: () => {
-            postAll(serviceUrls, {action: 'start'});
-            Popup.close();
-          }
-        }
       ]
     }
   });
@@ -278,6 +244,25 @@ export default class ClusterByService extends Component {
     this.setState({selected: []})
   };
 
+  updateSelectedByStatus = (status) => {
+    let allSelected = true;
+    status.forEach(s => {
+      if (!this.isSelected(s.instance, s.service)) {
+        allSelected = false;
+      }
+    });
+
+    let selected = this.state.selected;
+    status.forEach(s => {
+      if (allSelected) {
+        selected = this.removeSelected(s.instance, s.service, selected);
+      } else {
+        selected = this.addSelected(s.instance, s.service, selected);
+      }
+    });
+    this.setSelected(selected);
+  };
+
   render() {
 
     const { clusterName } = this.props.match.params;
@@ -326,25 +311,9 @@ export default class ClusterByService extends Component {
             <tr key={instance}>
               <td
                 className={`instance-name clickable`}
-                onClick={() => {
-                const status = statusGroup.statusByInstance(instance);
-                let allSelected = true;
-                status.forEach(s => {
-                  if (!this.isSelected(s.instance, s.service)) {
-                    allSelected = false;
-                  }
-                });
-
-                let selected = this.state.selected;
-                status.forEach(s => {
-                  if (allSelected) {
-                    selected = this.removeSelected(s.instance, s.service, selected);
-                  } else {
-                    selected = this.addSelected(s.instance, s.service, selected);
-                  }
-                });
-                this.setSelected(selected);
-              }}>{instance}</td>
+                onClick={() => { this.updateSelectedByStatus(statusGroup.statusByInstance(instance)); }}>
+                {instance}
+              </td>
               {items}
             </tr>
           );
@@ -364,25 +333,7 @@ export default class ClusterByService extends Component {
         return (
           <td key={service}
               className={`clickable service-name ${index%2===0?'even':'odd'}`}
-              onClick={() => {
-                const status = statusGroup.statusByService(service);
-                let allSelected = true;
-                status.forEach(s => {
-                  if (!this.isSelected(s.instance, s.service)) {
-                    allSelected = false;
-                  }
-                });
-
-                let selected = this.state.selected;
-                status.forEach(s => {
-                  if (allSelected) {
-                    selected = this.removeSelected(s.instance, s.service, selected);
-                  } else {
-                    selected = this.addSelected(s.instance, s.service, selected);
-                  }
-                });
-                this.setSelected(selected);
-              }}>
+              onClick={() => { this.updateSelectedByStatus(statusGroup.statusByService(service)); }}>
             <div><span>{service}</span></div>
           </td>
         )
@@ -409,11 +360,9 @@ export default class ClusterByService extends Component {
     return (
       <div>
         <Popup/>
-        <div className='App-subheader'>
-          <div className='previous'>clusters</div>
-          <div className='previous'>&nbsp;>&nbsp;</div>
-          <div className='current'>{clusterName}</div>
-        </div>
+        <SubHeader title={clusterName} links={[
+          {text: 'clusters', path: '/'}
+        ]}/>
         { loading() || summaryTable() }
         <div id='hidden_iframes' className='hidden-iframe-container'/>
       </div>

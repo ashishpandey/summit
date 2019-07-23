@@ -59,6 +59,7 @@ tr:hover .ignored {
     min-width: 100px;
     display: flex;
     justify-content: flex-end;
+    user-select: none;
 }
 
 tr:hover .instance-name {
@@ -66,7 +67,7 @@ tr:hover .instance-name {
 }
 
 .status {
-    min-width: 40px;
+    min-width: 36px;
 }
 
 tr.instance-failed .instance-name {
@@ -86,7 +87,7 @@ tr:hover.instance-failed > td.ignored {
     padding: 0;
     white-space: nowrap;
     height: 120px;
-    width: 40px;
+    width: 36px;
     line-height: 0.8;
     /*font-size: 12px;*/
 }
@@ -120,4 +121,5 @@ td:last-child.service-name > div {
     width: 150px;
     white-space: nowrap;
     text-align: right;
+    user-select: none;
 }

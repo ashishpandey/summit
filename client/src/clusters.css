@@ -1,0 +1,13 @@
+.cluster-list > li{
+    line-height: 1.4em;
+}
+
+.cluster-list > li > a{
+    text-decoration: none;
+    color: #212529;
+}
+
+.cluster-list > li > a:hover{
+    text-decoration: none;
+    color: black;
+}
