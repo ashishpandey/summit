@@ -38,8 +38,12 @@ iframe.very-small {
 
 .instance-name {
     color: #636e72;
-    padding: 1px 8px;
+    padding: 0px 8px;
     min-width: 8em;
+}
+
+.status {
+    min-width: 40px;
 }
 
 tr.instance-failed .instance-name {
@@ -67,7 +71,7 @@ tr.instance-failed > td.ignored {
     height: 100%;
     transform: skew(45deg, 0deg);
     overflow: hidden;
-    background-color: #bfc6c9;
+    background-color: lightgray;
 }
 
 .service-name > div > span {

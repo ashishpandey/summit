@@ -13,7 +13,7 @@ const groupSummaryByInstance = (summaries) => {
     acc[status.instance] = status.instanceUrl;
     return acc;
   };
-  const monitorServices = summaries.filter(s => s.instanceOk === true && R.contains(s.type, ['program']));
+  const monitorServices = summaries.filter(s => s.instanceOk === true && R.contains(s.type, ['program', 'process']));
   const instancesDown = summaries.filter(s => s.instanceOk === false).map(s => s.instance);
 
   const instancesUp = R.uniq(monitorServices.map(s => s.instance));
@@ -203,14 +203,14 @@ export default class ClusterByService extends Component {
             const status = statusGroup.status(instance, service);
             if (status) {
               return (
-                <td className={`clickable led-${status.led}`}
+                <td className={`status clickable led-${status.led}`}
                     key={service}
                     // style={{backgroundColor: status.led}}
                     onClick={() => showPopupForOneService(instance, service, statusGroup)}>
                 </td>
               );
             } else {
-              return <td key={service} className='ignored'/>;
+              return <td key={service} className='status ignored'/>;
             }
 
           });
