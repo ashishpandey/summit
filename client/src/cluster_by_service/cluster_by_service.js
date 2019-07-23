@@ -56,6 +56,14 @@ const groupSummaryByInstance = (summaries) => {
       }
     },
 
+    statusByService: (service) => {
+      return monitorServices.filter(s => s.service === service);
+    },
+
+    statusByInstance: (instance) => {
+      return monitorServices.filter(s => s.instance === instance);
+    },
+
     serviceUrls: (service) => {
       return monitorServices.filter(s => s.service === service).map(s => serviceUrl(s.instance, s.service));
     },
@@ -224,16 +232,41 @@ export default class ClusterByService extends Component {
     return body;
   };
 
-  select = (instance, service) => {
-    let selected = this.state.selected;
+  updateSelected = (instance, service, selected) => {
     const key = `${instance}|${service}`;
     if (R.contains(key, selected)) {
-      selected = selected.filter(k => k !== key);
+      return selected.filter(k => k !== key);
     } else {
       selected.push(key);
+      return selected;
     }
+  };
+
+  addSelected = (instance, service, selected) => {
+    const key = `${instance}|${service}`;
+    if (!R.contains(key, selected)) {
+      selected.push(key);
+      return selected;
+    }
+    return selected;
+  };
+
+  removeSelected = (instance, service, selected) => {
+    const key = `${instance}|${service}`;
+    if (R.contains(key, selected)) {
+      return selected.filter(k => k !== key);
+    }
+    return selected;
+  };
+
+  select = (instance, service) => {
+    const selected = this.updateSelected(instance, service, this.state.selected);
     console.log('selected', selected);
     this.setState({selected: selected})
+  };
+
+  setSelected = selected => {
+    this.setState({selected});
   };
 
   isSelected = (instance, service) => {
@@ -295,14 +328,34 @@ export default class ClusterByService extends Component {
           });
           return (
             <tr key={instance}>
-              <td className='instance-name clickable' onClick={() => openPage(statusGroup.instanceUrl(instance))}>{instance}</td>
+              <td className='instance-name clickable' onClick={() => {
+                const status = statusGroup.statusByInstance(instance);
+                let allSelected = true;
+                status.forEach(s => {
+                  if (!this.isSelected(s.instance, s.service)) {
+                    allSelected = false;
+                  }
+                });
+
+                let selected = this.state.selected;
+                status.forEach(s => {
+                  if (allSelected) {
+                    selected = this.removeSelected(s.instance, s.service, selected);
+                  } else {
+                    selected = this.addSelected(s.instance, s.service, selected);
+                  }
+                });
+                this.setSelected(selected);
+              }}>{instance}</td>
               {items}
             </tr>
           );
         } else {
           return (
             <tr key={instance} className='instance-failed'>
-              <td className='instance-name clickable' onClick={() => openPage(statusGroup.instanceUrl(instance))}>{instance}</td>
+              <td className='instance-name clickable' onClick={() => {
+                openPage(statusGroup.instanceUrl(instance))
+              }}>{instance}</td>
               <td className='ignored' colSpan={statusGroup.services.length}/>
             </tr>
           )
@@ -313,7 +366,25 @@ export default class ClusterByService extends Component {
         return (
           <td key={service}
               className='clickable service-name'
-              onClick={() => showPopupForOneServiceAtAllInstance(service, statusGroup)}>
+              onClick={() => {
+                const status = statusGroup.statusByService(service);
+                let allSelected = true;
+                status.forEach(s => {
+                  if (!this.isSelected(s.instance, s.service)) {
+                    allSelected = false;
+                  }
+                });
+
+                let selected = this.state.selected;
+                status.forEach(s => {
+                  if (allSelected) {
+                    selected = this.removeSelected(s.instance, s.service, selected);
+                  } else {
+                    selected = this.addSelected(s.instance, s.service, selected);
+                  }
+                });
+                this.setSelected(selected);
+              }}>
             <div><span>{service}</span></div>
           </td>
         )
