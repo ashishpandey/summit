@@ -222,7 +222,7 @@ export default class ClusterByService extends Component {
           );
         } else {
           return (
-            <tr key={instance} className='instance_failed'>
+            <tr key={instance} className='instance-failed'>
               <td className='instance-name clickable' onClick={() => openPage(statusGroup.instanceUrl(instance))}>{instance}</td>
               <td className='ignored' colSpan={statusGroup.services.length}/>
             </tr>
@@ -235,7 +235,7 @@ export default class ClusterByService extends Component {
           <td key={service}
               className='clickable service-name'
               onClick={() => showPopupForOneServiceAtAllInstance(service, statusGroup)}>
-            {service}
+            <div><span>{service}</span></div>
           </td>
         )
 

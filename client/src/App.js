@@ -16,7 +16,6 @@ const AppRouter = () => (
       </div>
       <div className="App-content">
         <Route exact path="/" component={Clusters} />
-        {/*<Route path="/cluster_by_service/:clusterName" component={Cluster} />*/}
         <Route path="/cluster/:clusterName" component={ClusterByService} />
       </div>
     </div>

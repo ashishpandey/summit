@@ -3,7 +3,7 @@ table.summary-table {
     border-collapse: separate;
 }
 
-tr.instance_failed {
+tr.instance-failed {
     background-color: #d63031;
 }
 
@@ -32,22 +32,52 @@ iframe.very-small {
     background-color: #d63031;
 }
 
+.led-orange {
+    background-color: #fdcb6e;
+}
+
 .instance-name {
     color: #636e72;
     padding: 1px 8px;
+    min-width: 8em;
 }
 
-tr.instance_failed .instance-name {
+tr.instance-failed .instance-name {
     color: white;
 }
 
-tr.instance_failed > td.ignored {
+tr.instance-failed > td.ignored {
     background-color: #ff7675;
 }
 
 .service-name {
     color: #636e72;
-    padding: 1px 5px;
+    padding: 0px;
+    white-space: nowrap;
+    height: 120px;
+    width: 40px;
+    line-height: 0.8;
+    /*font-size: 12px;*/
+}
+
+.service-name > div {
+    position: relative;
+    top: 0;
+    left: -60px;
+    height: 100%;
+    transform: skew(45deg, 0deg);
+    overflow: hidden;
+    background-color: #bfc6c9;
+}
+
+.service-name > div > span {
+    transform: skew(-45deg, 0deg) rotate(45deg);
+    position: absolute;
+    bottom: 55px;
+    left: -55px;
+    width: 150px;
+    white-space: nowrap;
+    text-align: right;
 }
 
 .cluster-name-description {
