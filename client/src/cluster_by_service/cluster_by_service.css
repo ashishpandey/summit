@@ -20,10 +20,7 @@ td.ignored {
 }
 
 td.selected {
-    background-color: #a29bfe;
-}
-tr:hover td.selected {
-    background-color: #b28bee;
+    border: #636e72 solid 5px;
 }
 
 iframe.very-small {
