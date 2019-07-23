@@ -3,12 +3,16 @@ table.summary-table {
     border-collapse: separate;
 }
 
-tr.instance-failed {
+tr.instance-failed .instance-name{
     background-color: #d63031;
 }
 
+tr:hover.instance-failed .instance-name{
+    background-color: #c62021;
+}
+
 td.ignored {
-    background-color: lightgray;
+    background-color: #d3d3d3;
 }
 
 .clickable {
@@ -27,14 +31,32 @@ iframe.very-small {
 .led-green {
     background-color: #00b894;
 }
+tr:hover .led-green {
+    background-color: #00a884;
+}
 
 .led-red {
     background-color: #d63031;
+}
+tr:hover .led-red {
+    background-color: #c62021;
 }
 
 .led-orange {
     background-color: #fdcb6e;
 }
+tr:hover .led-orange {
+    background-color: #edbb5e;
+}
+
+tr:hover .ignored {
+    background-color: #c3c3c3;
+}
+
+tr:hover .instance-name {
+    background-color: #cfd6d9;
+}
+
 
 .instance-name {
     color: #636e72;
@@ -52,6 +74,10 @@ tr.instance-failed .instance-name {
 
 tr.instance-failed > td.ignored {
     background-color: #ff7675;
+}
+
+tr:hover.instance-failed > td.ignored {
+    background-color: #ef6665;
 }
 
 .service-name {
