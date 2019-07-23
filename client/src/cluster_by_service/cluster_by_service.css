@@ -1,18 +1,7 @@
 table.summary-table {
     border-spacing: 2px;
     border-collapse: separate;
-}
-
-tr.instance-failed .instance-name{
-    background-color: #d63031;
-}
-
-tr:hover.instance-failed .instance-name{
-    background-color: #c62021;
-}
-
-td.ignored {
-    background-color: #d3d3d3;
+    font-size: 14px;
 }
 
 .clickable {
@@ -53,19 +42,27 @@ tr:hover .led-orange {
     background-color: #edbb5e;
 }
 
+td.ignored {
+    background-color: #dddddd;
+}
+td.ignored.even {
+    background-color: #d3d3d3;
+}
 tr:hover .ignored {
     background-color: #c3c3c3;
 }
 
-tr:hover .instance-name {
-    background-color: #cfd6d9;
+.instance-name {
+    border-radius: 10px 0 0 10px;
+    color: #636e72;
+    padding: 0px 5px;
+    min-width: 100px;
+    display: flex;
+    justify-content: flex-end;
 }
 
-
-.instance-name {
-    color: #636e72;
-    padding: 0px 8px;
-    min-width: 8em;
+tr:hover .instance-name {
+    background-color: #cfd6d9;
 }
 
 .status {
@@ -73,7 +70,7 @@ tr:hover .instance-name {
 }
 
 tr.instance-failed .instance-name {
-    color: white;
+    color: #d63031;
 }
 
 tr.instance-failed > td.ignored {
@@ -86,7 +83,7 @@ tr:hover.instance-failed > td.ignored {
 
 .service-name {
     color: #636e72;
-    padding: 0px;
+    padding: 0;
     white-space: nowrap;
     height: 120px;
     width: 40px;
@@ -101,28 +98,26 @@ tr:hover.instance-failed > td.ignored {
     height: 100%;
     transform: skew(45deg, 0deg);
     overflow: hidden;
-    background-color: lightgray;
+    background-color: #dddddd;
+}
+
+.service-name.even > div {
+    background-color: #d3d3d3;
+}
+
+td:nth-child(2).service-name > div {
+    border-radius: 15px 0 0 0;
+}
+td:last-child.service-name > div {
+    border-radius: 0 15px 0 0;
 }
 
 .service-name > div > span {
     transform: skew(-45deg, 0deg) rotate(45deg);
     position: absolute;
-    bottom: 55px;
+    bottom: 57px;
     left: -55px;
     width: 150px;
     white-space: nowrap;
     text-align: right;
-}
-
-.cluster-name-description {
-    font-size: 24px;
-    color: #a2aeb3;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.cluster-name {
-    font-size: 24px;
-    font-weight: bold;
-    display: inline-block;
 }

@@ -11,8 +11,10 @@ const AppRouter = () => (
   <Router>
     <div className="App">
       <div className='App-header'>
-        <img src={logo} className="App-logo" alt="logo" />
-        <div className='App-title'>Summit</div>
+        <div className='App-header-container'>
+          <img src={logo} className="App-logo" alt="logo" />
+          <div className='App-title'>Summit</div>
+        </div>
       </div>
       <div className="App-content">
         <Route exact path="/" component={Clusters} />

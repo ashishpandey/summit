@@ -261,7 +261,6 @@ export default class ClusterByService extends Component {
 
   select = (instance, service) => {
     const selected = this.updateSelected(instance, service, this.state.selected);
-    console.log('selected', selected);
     this.setState({selected: selected})
   };
 
@@ -292,7 +291,7 @@ export default class ClusterByService extends Component {
 
       const visibleRows = statusGroup.instances.map(instance => {
         if (statusGroup.instanceOk(instance)) {
-          const items = statusGroup.services.map(service => {
+          const items = statusGroup.services.map((service, index) => {
 
             const status = statusGroup.status(instance, service);
             if (status) {
@@ -300,12 +299,9 @@ export default class ClusterByService extends Component {
                 <td
                   className={`status clickable led-${status.led} ${this.isSelected(instance, service) ? "selected" : ""}`}
                   key={service}
-                  // style={{backgroundColor: status.led}}
                   onClick={(e) => {
-                    console.log(e);
                     if (e.ctrlKey || e.metaKey) {
                       this.select(instance, service);
-                      // console.log("you pressed control")
                     } else {
                       if (this.isSelected(instance, service)) {
                         showPopupForMultipleServices(this.state.selected, statusGroup);
@@ -322,13 +318,15 @@ export default class ClusterByService extends Component {
                 </td>
               );
             } else {
-              return <td key={service} className='status ignored'/>;
+              return <td key={service} className={`status ignored ${index%2===0?'even':'odd'}`}/>;
             }
 
           });
           return (
             <tr key={instance}>
-              <td className='instance-name clickable' onClick={() => {
+              <td
+                className={`instance-name clickable`}
+                onClick={() => {
                 const status = statusGroup.statusByInstance(instance);
                 let allSelected = true;
                 status.forEach(s => {
@@ -362,10 +360,10 @@ export default class ClusterByService extends Component {
         }
       });
 
-      const headers = statusGroup.services.map(service => {
+      const headers = statusGroup.services.map((service, index) => {
         return (
           <td key={service}
-              className='clickable service-name'
+              className={`clickable service-name ${index%2===0?'even':'odd'}`}
               onClick={() => {
                 const status = statusGroup.statusByService(service);
                 let allSelected = true;
@@ -411,8 +409,11 @@ export default class ClusterByService extends Component {
     return (
       <div>
         <Popup/>
-        <div className='cluster-name-description'>cluster: </div>
-        <div className='cluster-name'>{clusterName}</div>
+        <div className='App-subheader'>
+          <div className='previous'>clusters</div>
+          <div className='previous'>&nbsp;>&nbsp;</div>
+          <div className='current'>{clusterName}</div>
+        </div>
         { loading() || summaryTable() }
         <div id='hidden_iframes' className='hidden-iframe-container'/>
       </div>
