@@ -10,9 +10,6 @@ body {
 }
 
 .App-header {
-  /*background-color: #b2bec3;*/
-  /*height: 34px;*/
-  /*padding: 10px;*/
   text-align: left;
   display: flex;
   align-items: center;
@@ -37,6 +34,28 @@ body {
   font-family: 'Pacifico', cursive;
   line-height: 22px;
   font-size: 22px;
+}
+
+.App-subtitle {
+  height: 20px;
+  display: flex;
+  align-items: flex-start;
+  white-space: nowrap;
+  width: 0;
+  overflow: visible;
+  margin-left: 8px;
+  line-height: 1em;
+  font-size: 12px;
+  color: #a2aeb3;
+}
+
+.App-subtitle > a {
+  text-decoration: none;
+  color: #a2aeb3;
+}
+
+.App-subtitle > a:hover {
+  color: #000;
 }
 
 .App-content {

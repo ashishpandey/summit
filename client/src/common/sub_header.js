@@ -7,8 +7,8 @@ export default function SubHeader(props) {
 
   const linkObjects = [];
   links.forEach(link => {
-    linkObjects.push(<Link to={link.path} className='previous'>{link.text}</Link>)
-    linkObjects.push(<div className='previous'>&nbsp;>&nbsp;</div>)
+    linkObjects.push(<Link key={`${link.text}-link`} to={link.path} className='previous'>{link.text}</Link>)
+    linkObjects.push(<div key={`${link.text}-arrow`} className='previous'>&nbsp;>&nbsp;</div>)
   });
 
   return (
