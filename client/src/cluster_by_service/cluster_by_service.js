@@ -139,11 +139,50 @@ const showPopupForOneServiceAtAllInstance = (service, statusGroup) => {
   });
 };
 
+const showPopupForMultipleServices = (selected, statusGroup) => {
+
+  const serviceUrls = selected.map(selected => {
+    const parts = selected.split('|');
+    return statusGroup.serviceUrl(parts[0], parts[1]);
+  });
+
+  Popup.create({
+    title: `${serviceUrls.length} service(s)`,
+    content: <span>
+      start or stop <b>all {serviceUrls.length} services(s)</b><br/>
+      <i>press [esc] to close</i>
+    </span>,
+    buttons: {
+      left: [
+        {
+          text: `Stop all (${serviceUrls.length})`,
+          className: 'danger',
+          action: () => {
+            postAll(serviceUrls, {action: 'stop'});
+            Popup.close();
+          }
+        }
+      ],
+      right: [
+        {
+          text: `Start all (${serviceUrls.length})`,
+          className: 'success',
+          action: () => {
+            postAll(serviceUrls, {action: 'start'});
+            Popup.close();
+          }
+        }
+      ]
+    }
+  });
+};
+
 export default class ClusterByService extends Component {
   state = {
     showOk: true,
     summaries: [],
-    initialized: false
+    initialized: false,
+    selected: [],
   };
 
   componentDidMount() {
@@ -185,6 +224,28 @@ export default class ClusterByService extends Component {
     return body;
   };
 
+  select = (instance, service) => {
+    let selected = this.state.selected;
+    const key = `${instance}|${service}`;
+    if (R.contains(key, selected)) {
+      selected = selected.filter(k => k !== key);
+    } else {
+      selected.push(key);
+    }
+    console.log('selected', selected);
+    this.setState({selected: selected})
+  };
+
+  isSelected = (instance, service) => {
+    const selected = this.state.selected;
+    const key = `${instance}|${service}`;
+    return R.contains(key, selected);
+  };
+
+  clearSelected = () => {
+    this.setState({selected: []})
+  };
+
   render() {
 
     const { clusterName } = this.props.match.params;
@@ -203,10 +264,28 @@ export default class ClusterByService extends Component {
             const status = statusGroup.status(instance, service);
             if (status) {
               return (
-                <td className={`status clickable led-${status.led}`}
-                    key={service}
-                    // style={{backgroundColor: status.led}}
-                    onClick={() => showPopupForOneService(instance, service, statusGroup)}>
+                <td
+                  className={`status clickable led-${status.led} ${this.isSelected(instance, service) ? "selected" : ""}`}
+                  key={service}
+                  // style={{backgroundColor: status.led}}
+                  onClick={(e) => {
+                    console.log(e);
+                    if (e.ctrlKey || e.metaKey) {
+                      this.select(instance, service);
+                      // console.log("you pressed control")
+                    } else {
+                      if (this.isSelected(instance, service)) {
+                        showPopupForMultipleServices(this.state.selected, statusGroup);
+                      } else {
+                        if (this.state.selected && this.state.selected.length) {
+                          this.clearSelected();
+                        } else {
+                          showPopupForOneService(instance, service, statusGroup);
+                        }
+                      }
+
+                    }
+                  }}>
                 </td>
               );
             } else {

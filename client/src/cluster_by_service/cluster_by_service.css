@@ -19,6 +19,13 @@ td.ignored {
     cursor: pointer;
 }
 
+td.selected {
+    background-color: #a29bfe;
+}
+tr:hover td.selected {
+    background-color: #b28bee;
+}
+
 iframe.very-small {
     width: 2px;
     height: 2px;
