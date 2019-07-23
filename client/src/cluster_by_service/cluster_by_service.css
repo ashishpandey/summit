@@ -1,0 +1,64 @@
+table.summary-table {
+    border-spacing: 2px;
+    border-collapse: separate;
+}
+
+tr.instance_failed {
+    background-color: #d63031;
+}
+
+td.ignored {
+    background-color: lightgray;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+iframe.very-small {
+    width: 2px;
+    height: 2px;
+}
+
+.hidden-iframe-container {
+    /*height: 10px;*/
+}
+
+.led-green {
+    background-color: #00b894;
+}
+
+.led-red {
+    background-color: #d63031;
+}
+
+.instance-name {
+    color: #636e72;
+    padding: 1px 8px;
+}
+
+tr.instance_failed .instance-name {
+    color: white;
+}
+
+tr.instance_failed > td.ignored {
+    background-color: #ff7675;
+}
+
+.service-name {
+    color: #636e72;
+    padding: 1px 5px;
+}
+
+.cluster-name-description {
+    font-size: 24px;
+    color: #a2aeb3;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.cluster-name {
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+}

@@ -1,3 +1,8 @@
+body {
+  background-color: #dfe6e9;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
 .App {
   text-align: left;
   display: flex;
@@ -6,22 +11,30 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 30px;
+  height: 24px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 50px;
-  padding: 10px;
+  background-color: #b2bec3;
+  height: 34px;
+  /*padding: 10px;*/
   text-align: left;
   display: flex;
+  align-items: center;
+  padding: 2px 5px;
 }
 
 .App-title {
-  font-size: 1.8em;
-  color: #666666;
-  text-align: center;
+  line-height: 22px;
+  font-size: 22px;
   flex-grow: 1;
+  justify-content: flex-end;
+  display: flex;
+
+  /*font-size: 1.8em;*/
+  /*color: #666666;*/
+  /*text-align: center;*/
+  /*flex-grow: 1;*/
 }
 
 .App-content {

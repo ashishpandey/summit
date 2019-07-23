@@ -17,6 +17,7 @@ const summarizeInstance = function(clusterName, monit) {
         cluster: clusterName,
         instance: monit.instanceName,
         instanceOk: true,
+        instanceUrl: monit.instanceUrl,
         response: status
       }
     })
@@ -26,6 +27,7 @@ const summarizeInstance = function(clusterName, monit) {
         cluster: clusterName,
         instance: monit.instanceName,
         instanceOk: false,
+        instanceUrl: monit.instanceUrl,
         error: err
       }
     });
@@ -52,7 +54,8 @@ const clusterStatus = function(clusterName) {
 
 const clusterSummary = function(status) {
   const explodeInstance = instanceStatus => {
-    const { cluster, instance, instanceOk, response } = instanceStatus;
+    const { cluster, instance, instanceOk, response, instanceUrl } = instanceStatus;
+    console.log('instanceUrl', instanceUrl);
     const toType = svcType => {
       switch(svcType) {
         case '1': return 'directory';
@@ -75,6 +78,7 @@ const clusterSummary = function(status) {
         cluster: cluster,
         instance: instance,
         instanceOk: instanceOk,
+        instanceUrl: instanceUrl,
         service: service.name,
         type: toType(service.$.type),
         serviceOk: serviceOk,
@@ -92,6 +96,7 @@ const clusterSummary = function(status) {
         cluster: cluster,
         instance: instance,
         instanceOk: instanceOk,
+        instanceUrl: instanceUrl,
         led: 'red',
         allOk: false
       }
