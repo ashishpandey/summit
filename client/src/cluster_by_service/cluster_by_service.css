@@ -61,12 +61,14 @@ tr:hover .ignored {
     justify-content: flex-end;
     user-select: none;
     align-items: center;
+    white-space: nowrap;
 }
 
 .instance-name > i {
     flex-grow: 1;
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 3px;
+    padding-right: 5px;
     opacity: 0;
 }
 
@@ -139,4 +141,7 @@ td:last-child.service-name > div {
     white-space: nowrap;
     text-align: right;
     user-select: none;
+}
+
+.summary-container {
 }

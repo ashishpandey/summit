@@ -55,7 +55,6 @@ const clusterStatus = function(clusterName) {
 const clusterSummary = function(status) {
   const explodeInstance = instanceStatus => {
     const { cluster, instance, instanceOk, response, instanceUrl } = instanceStatus;
-    console.log('instanceUrl', instanceUrl);
     const toType = svcType => {
       switch(svcType) {
         case '1': return 'directory';

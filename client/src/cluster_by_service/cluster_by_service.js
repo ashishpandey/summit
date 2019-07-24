@@ -310,10 +310,11 @@ export default class ClusterByService extends Component {
           return (
             <tr key={instance}>
               <td
-                className={`instance-name clickable`}
-                onClick={() => { this.updateSelectedByStatus(statusGroup.statusByInstance(instance)); }}>
-                <i className="material-icons" onClick={() => {openPage(statusGroup.instanceUrl(instance))}}>toc</i>
+                className={`instance-name clickable`}>
+                <i className="material-icons" onClick={() => {openPage(statusGroup.instanceUrl(instance));}}>toc</i>
+                <span onClick={() => { this.updateSelectedByStatus(statusGroup.statusByInstance(instance)); }}>
                 {instance}
+                </span>
               </td>
               {items}
             </tr>
@@ -343,7 +344,7 @@ export default class ClusterByService extends Component {
       });
 
       return (
-        <div>
+        <div className='summary-container'>
           <table className='summary-table'>
             <thead>
             <tr>
