@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import * as R from 'ramda';
 import Popup from 'react-popup';
-import {openPage} from "./dom_utils";
+import {elementsWithClassName, openPage} from "./dom_utils";
 import {post, postAll, retrievePermission} from "./monit_utils";
 import './cluster_by_service.css';
 import './popup.css';
@@ -282,7 +282,7 @@ export default class ClusterByService extends Component {
             if (status) {
               return (
                 <td
-                  className={`status clickable led-${status.led} ${this.isSelected(instance, service) ? "selected" : ""}`}
+                  className={`status clickable column-${index} led-${status.led} ${this.isSelected(instance, service) ? "selected" : ""}`}
                   key={service}
                   onClick={(e) => {
                     if (e.ctrlKey || e.metaKey) {
@@ -303,7 +303,7 @@ export default class ClusterByService extends Component {
                 </td>
               );
             } else {
-              return <td key={service} className={`status ignored ${index%2===0?'even':'odd'}`}/>;
+              return <td key={service} className={`status ignored ${index%2===0?'even':'odd'} column-${index}`}/>;
             }
 
           });
@@ -335,11 +335,15 @@ export default class ClusterByService extends Component {
       const headers = statusGroup.services.map((service, index) => {
         return (
           <td key={service}
-              className={`clickable service-name ${index%2===0?'even':'odd'}`}
-              onClick={() => { this.updateSelectedByStatus(statusGroup.statusByService(service)); }}>
+              className={`clickable service-name column-${index} ${index % 2 === 0 ? 'even' : 'odd'}`}
+              onMouseOver={() => elementsWithClassName(`column-${index}`).addClass('mouse-over')}
+              onMouseOut={() => elementsWithClassName(`column-${index}`).removeClass('mouse-over')}
+              onClick={() => {
+                this.updateSelectedByStatus(statusGroup.statusByService(service));
+              }}>
             <div><span>{service}</span></div>
           </td>
-        )
+        );
 
       });
 
