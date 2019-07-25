@@ -361,7 +361,7 @@ export default class ClusterByService extends Component {
     };
 
     return (
-      <div>
+      <div className='App-content'>
         <Popup/>
         <SubHeader title={clusterName} links={[
           {text: 'clusters', path: '/'}

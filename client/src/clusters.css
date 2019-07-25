@@ -1,5 +1,9 @@
+.cluster-list {
+    display: inline-block;
+}
 .cluster-list > li{
-    line-height: 1.4em;
+    line-height: 1.1em;
+    text-align: left;
 }
 
 .cluster-list > li > a{
@@ -10,4 +14,8 @@
 .cluster-list > li > a:hover{
     text-decoration: none;
     color: black;
+}
+
+.clusters-container {
+    text-align: center;
 }

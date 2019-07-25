@@ -1,4 +1,5 @@
 table.summary-table {
+    display: inline-block;
     border-spacing: 2px;
     border-collapse: separate;
     font-size: 14px;
@@ -70,6 +71,7 @@ tr:hover .ignored {
     margin-left: 3px;
     padding-right: 5px;
     opacity: 0;
+    text-align: left;
 }
 
 tr:hover .instance-name {
@@ -144,4 +146,8 @@ td:last-child.service-name > div {
 }
 
 .summary-container {
+    display: inline-block;
+    text-align: center;
+    overflow-x: scroll;
+    padding: 0 10px 10px 10px;
 }

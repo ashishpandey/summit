@@ -25,10 +25,8 @@ const AppRouter = () => (
           )}
         </div>
       </div>
-      <div className="App-content">
-        <Route exact path="/" component={Clusters} />
-        <Route path="/cluster/:clusterName" component={ClusterByService} />
-      </div>
+      <Route exact path="/" component={Clusters} />
+      <Route path="/cluster/:clusterName" component={ClusterByService} />
     </div>
   </Router>
 );

@@ -22,7 +22,7 @@ export default class Clusters extends Component {
       clusterName => (<li key={clusterName}><Link to={`/cluster/${clusterName}`}>{clusterName}</Link></li>),
       this.state.clusters);
     return (
-      <div>
+      <div className='clusters-container'>
         <SubHeader title='clusters'/>
         <Description>The following clusters are configured:</Description>
         <ul className='cluster-list'>{clusters}</ul>
