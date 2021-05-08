@@ -9,16 +9,16 @@
     "test": "react-scripts test --env=jsdom"
   },
   "dependencies": {
-    "express": "^4.16.2",
-    "express-promise-router": "^3.0.1",
-    "nocache": "^2.0.0",
-    "ramda": "^0.25.0",
-    "request": "^2.83.0",
-    "request-promise-native": "^1.0.5",
+    "express": "^4.17.1",
+    "express-promise-router": "^4.1.0",
+    "nocache": "^2.1.0",
+    "ramda": "^0.27.1",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.9",
     "xml2js-es6-promise": "^1.1.1",
     "yml": "^1.0.0"
   },
   "devDependencies": {
-    "concurrently": "^3.5.1"
+    "concurrently": "^6.1.0"
   }
 }
