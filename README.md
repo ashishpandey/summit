@@ -3,15 +3,18 @@
 
 Sum up the status from your monit instances
 
-[![Build Status](https://travis-ci.org/ashishpandey/summit.svg?branch=master)][T]
+master: [![Build Status](https://travis-ci.org/ashishpandey/summit.svg?branch=master)][T]
 
-| Node 8            | Latest Node            |
-|-------------------|------------------------|
-| [![Node 8][2]][T] | [![Latest Node][1]][T] |
+| branch         | Node 10 (min)     | Latest Node            |
+| -------------- |-------------------|------------------------|
+| **master**     | [![Node 10][2]][T] | [![Latest Node][1]][T] |
+| **pkg_latest** | [![Node 10][4]][T] | [![Latest Node][3]][T] |
 
 [T]: https://travis-ci.org/ashishpandey/summit
 [1]: https://travis-matrix-badges.herokuapp.com/repos/ashishpandey/summit/branches/master/1
 [2]: https://travis-matrix-badges.herokuapp.com/repos/ashishpandey/summit/branches/master/2
+[3]: https://travis-matrix-badges.herokuapp.com/repos/ashishpandey/summit/branches/pkg_latest/1
+[4]: https://travis-matrix-badges.herokuapp.com/repos/ashishpandey/summit/branches/pkg_latest/2
 
 This is not a replacement for M/monit which is a much advanced product with much more functionality. The goal here is to [KISS](https://en.wikipedia.org/wiki/KISS_principle), and just provide a overview of all of your monit instances at a glance
 
