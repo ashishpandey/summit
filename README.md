@@ -3,7 +3,7 @@
 
 Sum up the status from your monit instances
 
-master: [![Build Status](https://travis-ci.org/ashishpandey/summit.svg?branch=master)][T]
+[![Build Status](https://travis-ci.org/ashishpandey/summit.svg?branch=master)][T]
 
 | branch         | Node 10 (min)     | Latest Node            |
 | -------------- |-------------------|------------------------|
