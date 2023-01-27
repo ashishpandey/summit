@@ -23,9 +23,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: switch to client dir
-        run: cd client
       - name: Install dependencies
         run: yarn
+        working-directory: client
       - name: run tests
         run: yarn test
+        working-directory: client
