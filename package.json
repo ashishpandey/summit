@@ -9,7 +9,7 @@
     "test": "react-scripts test --env=jsdom"
   },
   "dependencies": {
-    "express": "^4.19.2",
+    "express": "^4.20.0",
     "express-promise-router": "^3.0.1",
     "nocache": "^2.0.0",
     "ramda": "^0.25.0",
